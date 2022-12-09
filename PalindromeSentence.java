@@ -2,8 +2,11 @@ package dumpFile_Challenge;
 
 public class PalindromeSentence {
     public static void main(String[] args) {
-        //case : check palindrom, ignore upper/lower, ignore space, ignore special character
-        String text = ",Madam, ,madam, racecar madam .madam,";
+        //LeetCode = https://leetcode.com/problems/valid-palindrome/description/
+
+        //case : check palindrome, ignore upper/lower, ignore space, ignore special character
+        //String text = ",Madam, ,madam, racecar madam .madam,";
+        String text = "0P";
         //String text = ",madam.";
         String lowerText = text.toLowerCase();
 
@@ -14,7 +17,9 @@ public class PalindromeSentence {
 
         for(int i = 0; i < textArray.length ; i++)
         {
-            while(textArray[i] == ' ' || textArray[i] == ',' || textArray[i] == '.') {
+            //while(textArray[i] == ' ' || textArray[i] == ',' || textArray[i] == '.')
+            while(!Character.isLetterOrDigit(textArray[i]))
+            {
 
                 i++;
                 encounter++;
@@ -25,7 +30,9 @@ public class PalindromeSentence {
                 }
             }
 
-            while (textArray[lastIndex] == ' ' || textArray[lastIndex] == ',' || textArray[lastIndex] == '.') {
+            //while (textArray[lastIndex] == ' ' || textArray[lastIndex] == ',' || textArray[lastIndex] == '.')
+            while (!Character.isLetterOrDigit(textArray[lastIndex]))
+            {
                     lastIndex--;
                     encounter++;
                     if(lastIndex < 0)
@@ -35,7 +42,7 @@ public class PalindromeSentence {
                     }
                 }
 
-            if(textArray[i] == textArray[lastIndex] && textArray[i] != ' ' && textArray[i] != ',' && textArray[i] != '.')
+            if(textArray[i] == textArray[lastIndex] && Character.isLetterOrDigit(textArray[i]))
             {
                 count++;
                 lastIndex--;
@@ -47,7 +54,8 @@ public class PalindromeSentence {
         }
 
         //misal ada special char/ spasi di first index, dan di last index tidak ada ---> looping berhenti jadi gk imbang nilai encounter
-        if((textArray[0] == ' ' || textArray[0] == ',' || textArray[0] == '.' )&& (textArray[lastIndex] != ' ' || textArray[lastIndex] != ',' || textArray[lastIndex] != '.') )
+        //if((textArray[0] == ' ' || textArray[0] == ',' || textArray[0] == '.' )&& (textArray[lastIndex] != ' ' || textArray[lastIndex] != ',' || textArray[lastIndex] != '.') )
+        if(Character.isLetterOrDigit(textArray[0]) && !Character.isLetterOrDigit(textArray[lastIndex]))
         {
             encounter++;
         }
@@ -55,6 +63,12 @@ public class PalindromeSentence {
         System.out.println("total count : " + count);
         System.out.println("total encounter : " + encounter);
         System.out.println("total length : " + textArray.length);
+
+        if(encounter == 1)
+        {
+            encounter++;
+        }
+
         int comparison = textArray.length - (encounter/2);
         if(count == comparison)
         {
