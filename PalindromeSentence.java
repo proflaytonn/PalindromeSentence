@@ -44,13 +44,6 @@ public class PalindromeSentence {
                     lastIndex++;
                 }
             }
-
-//            if(textArray[i] != textArray[lastIndex])
-//            {
-//                System.out.println("not palindrome");
-//            }
-//            else System.out.println("palindrome");
-//            lastIndex--;
         }
 
         //misal ada special char/ spasi di first index, dan di last index tidak ada ---> looping berhenti jadi gk imbang nilai encounter
